@@ -1,11 +1,10 @@
 <?php
-//----------------------------
-//Manejo de los datos del formulario
-//----------------
-  require ('includes/clases.php');  
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
 
-
-//----------------------------
+require ('includes/clases.php'); 
 
 ?>
 
@@ -55,10 +54,18 @@
                 <li class="<?php if ($Page =='ofertas'){ echo 'active';} ?>"><a href="#">Ofertas</a></li>
                 <li class="<?php if ($Page =='servicios'){ echo 'active';} ?>"><a href="#">Servicios</a></li>
                 <li class="<?php if ($Page =='contacto'){ echo 'active';} ?>"><a href="#">Contacto</a></li>                                            
-                <li class="<?php if ($Page =='adminuser'){ echo 'active';} ?>"><a href="#">Administrar Usuarios</a></li> 
-                <li class=""><a href="#">Salir</a></li>                  
-                <li class="<?php if ($Page =='registro'){ echo 'active';} ?>"><a href="registro.php">Registrarse</a></li>    
-                <li class="<?php if ($Page =='ingreso'){ echo 'active';} ?>"><a href="ingresar.php">Ingresar</a></li>      
+                 
+                              
+                
+                <?php if(empty($_SESSION['mensaje'])): ?>                    
+                    <li class="<?php if ($Page =='registro'){ echo 'active';} ?>"><a href="registro.php">Registrarse</a></li>
+                    <li class="<?php if ($Page =='ingreso'){ echo 'active';} ?>"><a href="ingresar.php">Ingresar</a></li>
+                <?php else:?>
+                        <li class="<?php if ($Page =='adminuser'){ echo 'active';} ?>"><a href="adminuser.php">Administrar Usuarios</a></li>
+                        <li class=""><a href="salir.php">Salir</a></li>
+                        <li><a href="#"> BIENVENIDO<?php echo '['.$_SESSION['usuario'].']';?></a></li>
+                <?php endif; ?>
+
             </ul>             
         </div>      
     </nav>

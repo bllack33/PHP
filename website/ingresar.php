@@ -19,20 +19,20 @@ include ('includes/header.php');
 	
 
              
-            <form action='?menu=ingreso' method='post'>
+            <form action='ingreso.php' method='post'>
 
                 <div class="input-group">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>  
                   </span>   
-                      <input  class="form-control" id="email" name="email" type="text" placeholder="Usuario" required="true">   
+                      <input  class="form-control" id="email" name="email" type="text" placeholder="Correo" >   
                 </div>  
 
                 <div class="input-group">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
                   </span>   
-                      <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña" required="true">     
+                      <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña" >     
                 </div>  
 
 
@@ -41,7 +41,19 @@ include ('includes/header.php');
               </button>
 
               </form> 
-
+              <?php if(!empty($_SESSION['error2'])): ?>
+                <div style="background-color: #f74747;;margin-top: 15px;height: 40px;border-radius: 4pt;padding:10px;text-align: center;">
+                  <ul>
+                    <?php echo $_SESSION['error2']; ?>
+                  </ul>
+                </div>
+              <?php elseif (!empty($_SESSION['error1'])):?>
+                <div style="background-color: #a3e592;;margin-top: 15px;height: 40px;border-radius: 4pt;padding:10px;text-align: center;">
+                  <ul>
+                    <?php echo $_SESSION['error1'];?>
+                  </ul>
+                </div>
+              <?php endif; ?>
 
 </div>
 </div>

@@ -1,9 +1,16 @@
 <?php
-
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+ if (!empty($_SESSION['mensaje'])) {
+ 	header("Refresh:2; url=index.php");
+ }
+ 
 $Page_Title = 'Registro de Usuarios';
 $Page = 'registro';
 include ('includes/header.php');
-//include('registrarUsuario.php');
+
 ?>
 <!-- Nota: Lista de iconos de Bootstrap 
  https://www.w3schools.com/icons/bootstrap_icons_glyphicons.asp
@@ -72,7 +79,20 @@ include ('includes/header.php');
 				  <span class="glyphicon glyphicon-send"></span> Enviar 
 				</button>
 
-				</form>	
+				</form>
+				<?php if(!empty($_SESSION['error'])): ?>
+					<div style="background-color: #f4d84b;;margin-top: 15px;height: 40px;border-radius: 4pt;padding:10px;text-align: center;">
+						<ul>
+							<?php echo $_SESSION['error']; ?>
+						</ul>
+					</div>
+				<?php elseif (!empty($_SESSION['mensaje'])):?>
+					<div style="background-color: #a3e592;;margin-top: 15px;height: 40px;border-radius: 4pt;padding:10px;text-align: center;">
+						<ul>
+							<?php echo $_SESSION['mensaje'];?>
+						</ul>
+					</div>
+				<?php endif; ?>	
 
 </div>
 </div>

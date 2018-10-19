@@ -1,31 +1,32 @@
 <?php
+session_start();
     $page_Title = 'Resultado de Insertar Registro en Tabla Clientes';
-    
-    
-    include('includes/header.php');
-    //require ('includes/clases.php'); 
-?>
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container">
-        <h1>Registro de Usuarios</h1>
-        <?php
-            $user = $_POST['user'];
-            //$password = $_POST['password'];
-            $firstname = $_POST['firstname'];
-            $secondname = $_POST['secondname'];
-            $lastname1 = $_POST['lastname1'];
-            $lastname2 = $_POST['lastname2'];
-            $email = $_POST['email'];
 
-            $insertarRegistroBD = new Connection();
-            //par escriptar clave
-            $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);         
-            $password = $hash;
-            //$password = $hash;
-            $insertarRegistroBD->insertarRegistro($user, $password, $firstname, $secondname, $lastname1, $lastname2, $email);
-        ?>
-    </div>
-</div>
-<?php
-    include('includes/footer.php');
+    require ('includes/clases.php'); 
+    $_SESSION['error'] = "";
+    $_SESSION['mensaje'] = "";
+    $usuario = $_POST['user'];
+    $contraseña = $_POST['password'];
+    $primer_nombre = $_POST['firstname'];
+    $segundo_nombre = $_POST['secondname'];
+    $primer_apellido = $_POST['lastname1'];
+    $segundo_apellido = $_POST['lastname2'];
+    $email = $_POST['email'];
+
+    $_SESSION['usuario'] = $usuario;
+
+    //Validar usuario
+    $consultarUsuario = new Registro();
+    $consultarUsuario->consultarUsuario($email);
+
+    if($consultarUsuario->estado != "OK"){
+        $insertarRegistroBD = new Registro();
+        $insertarRegistroBD->registro_usuario($usuario,$contraseña,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$email);
+        $_SESSION['mensaje'] = "Usuario creado correctamente";
+    }else{
+        $_SESSION['error'] = "El usuario con el correo <strong>$email</strong> ya existe";
+    }      
+
+
+    header('Location: registro.php');
+?>

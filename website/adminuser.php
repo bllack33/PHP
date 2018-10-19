@@ -1,10 +1,18 @@
 <?php
+	if(!isset($_SESSION)){ 
+	        session_start(); 
+	    }
+	$Page_Title = 'Administración de Usuarios';
+	$Page = 'adminuser';
 
-$Page_Title = 'Administración de Usuarios';
-$Page = 'adminuser';
-include ('includes/header.php');
+	//require ('includes/clases.php');
+	include ('includes/header.php');
+
+	$consultar = new Registro();
+	$usuarios = $consultar->consultarTodo();
 
 ?>
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container container text-center">
@@ -13,10 +21,27 @@ include ('includes/header.php');
       </div>
     </div>
 
-
+<?php echo $usuarios[0][0]; ?>
 <div class="container">
-	<p class="text-center">Mostrar acá una tabla con el listado de usuarios registrados</p>.
+	<p class="text-center">
+		<div>
+			<?php
+
+			 $longitud = count($usuarios);
+				for($i=0; $i<$longitud; $i++) {
+					echo '<div> <ul style="float: left;">';
+					echo '<h3>Usuario '.$i.'</h3>';
+					$longitud1 = count($usuarios[$i]);
+					for($j=0; $j<$longitud1; $j++) {		    
+					    echo '<tr>'.$usuarios[$i][$j].'</tr> <br>';		    
+					}
+					echo '</ul></div>';
+				}
+			 ?>
+		 </div>
+	</p>
 </div>	
+
 
 
 <?php
