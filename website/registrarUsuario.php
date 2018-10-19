@@ -4,7 +4,7 @@ session_start();
 
     require ('includes/clases.php'); 
     $_SESSION['error'] = "";
-    $_SESSION['mensaje'] = "";
+    $_SESSION['mensaje'] = "";    
     $usuario = $_POST['user'];
     $contraseña = $_POST['password'];
     $primer_nombre = $_POST['firstname'];
@@ -22,9 +22,12 @@ session_start();
     if($consultarUsuario->estado != "OK"){
         $insertarRegistroBD = new Registro();
         $insertarRegistroBD->registro_usuario($usuario,$contraseña,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$email);
-        $_SESSION['mensaje'] = "Usuario creado correctamente";
+        $_SESSION['mensaje'] = "Registro exitoso del usuario [<strong>$usuario</strong>]. Por favor inicie sesion <a href='ingresar.php'>Ingresar</a>";
+        $_SESSION['login'] = "no";
+
     }else{
         $_SESSION['error'] = "El usuario con el correo <strong>$email</strong> ya existe";
+        $_SESSION['login'] = "no";
     }      
 
 

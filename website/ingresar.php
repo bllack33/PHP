@@ -25,14 +25,14 @@ include ('includes/header.php');
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-user"></span>  
                   </span>   
-                      <input  class="form-control" id="email" name="email" type="text" placeholder="Correo" >   
+                      <input  class="form-control" id="email" name="email" type="text" placeholder="Correo" required="true">   
                 </div>  
 
                 <div class="input-group">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
                   </span>   
-                      <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña" >     
+                      <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña" required="true">     
                 </div>  
 
 

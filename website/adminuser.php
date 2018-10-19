@@ -21,7 +21,6 @@
       </div>
     </div>
 
-<?php echo $usuarios[0][0]; ?>
 <div class="container">
 	<p class="text-center">
 		<div>

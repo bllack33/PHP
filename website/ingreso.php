@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
     require ('includes/clases.php'); 
     $_SESSION['error1'] = "";
     $_SESSION['error2'] = "";
-    $_SESSION['mensaje'] = "";
+    $_SESSION['mensaje'] = "";    
 
     $contraseña = $_POST['password'];   
     $email = $_POST['email'];    
@@ -21,7 +21,7 @@ if(!isset($_SESSION)){
 	 if(!empty($usuario['email'])){
 	    if( $usuario['email'] == $email &&  $usuario['contraseña'] == $contraseña ){
 	    	$_SESSION['usuario'] = $usuario['usuario'];
-	    	$_SESSION['mensaje'] = "ok";
+	    	$_SESSION['login'] = "si";   		    	
 	    	header('Location: index.php');
 	    }elseif($usuario['email'] == $email &&  $usuario['contraseña'] != $contraseña){
 			echo $_SESSION['error1'] = "Por favor verificar los datos ingresados";

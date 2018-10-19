@@ -1,11 +1,10 @@
 <?php
     if(!isset($_SESSION)) 
     { 
-        session_start(); 
+        session_start();         
     }
 
 require ('includes/clases.php'); 
-
 ?>
 
 
@@ -53,19 +52,28 @@ require ('includes/clases.php');
                 <li class="<?php if ($Page =='productos'){ echo 'active';} ?>"><a href="">Productos</a></li>
                 <li class="<?php if ($Page =='ofertas'){ echo 'active';} ?>"><a href="#">Ofertas</a></li>
                 <li class="<?php if ($Page =='servicios'){ echo 'active';} ?>"><a href="#">Servicios</a></li>
-                <li class="<?php if ($Page =='contacto'){ echo 'active';} ?>"><a href="#">Contacto</a></li>                                            
+                <li class="<?php if ($Page =='contacto'){ echo 'active';} ?>"><a href="#">Contacto</a></li>
                  
-                              
-                
-                <?php if(empty($_SESSION['mensaje'])): ?>                    
+                <?php 
+                 if(!isset($_SESSION['login']) || $_SESSION['login'] == "no" || empty($_SESSION['login'])){
+                ?>
                     <li class="<?php if ($Page =='registro'){ echo 'active';} ?>"><a href="registro.php">Registrarse</a></li>
                     <li class="<?php if ($Page =='ingreso'){ echo 'active';} ?>"><a href="ingresar.php">Ingresar</a></li>
-                <?php else:?>
-                        <li class="<?php if ($Page =='adminuser'){ echo 'active';} ?>"><a href="adminuser.php">Administrar Usuarios</a></li>
-                        <li class=""><a href="salir.php">Salir</a></li>
-                        <li><a href="#"> BIENVENIDO<?php echo '['.$_SESSION['usuario'].']';?></a></li>
-                <?php endif; ?>
+                <?php
+                }
+                ?>
 
+                <?php 
+                 if($_SESSION['login'] == "si"){
+                ?>
+                    <li class="<?php if ($Page =='adminuser'){ echo 'active';} ?>"><a href="adminuser.php">Administrar Usuarios</a></li>
+                    <li><a href="salir.php">Salir</a></li>
+                    <li><a href="#"> <?php echo $_SESSION['usuario']; ?></a></li>
+                <?php
+                }
+                ?>              
+                
+                
             </ul>             
         </div>      
     </nav>

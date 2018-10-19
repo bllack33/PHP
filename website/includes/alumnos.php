@@ -6,10 +6,10 @@ Tercera evaluación parcial. 20%.
 */
 //-----------------------------
 //Datos del equipo de trabajo:
-$alumno1='Apellidos y Nombres del Alumno 1 - Carne o Cédula';
-$alumno2='Apellidos y Nombres del Alumno 1 - Carne o Cédula';
-$alumno3='Apellidos y Nombres del Alumno 1 - Carne o Cédula';
-$alumno4='Apellidos y Nombres del Alumno 1 - Carne o Cédula';
+$alumno1='Piedrahita Ramirez Juan David 1    - 1017133416';
+$alumno2='Johnny Alejandro Martinez Saraza 2 - 17208351';
+$alumno3='';
+$alumno4='';
 $grupo='PPI62-?';
 //-----------------------------
 ?>
